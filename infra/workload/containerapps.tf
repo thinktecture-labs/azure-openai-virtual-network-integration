@@ -18,6 +18,10 @@ resource "azurerm_container_app_environment" "acaenv" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 }
 
+output "app_url" {
+  value = azurerm_container_app.app.ingress[0].fqdn
+}
+
 resource "azurerm_container_app" "app" {
   name                         = "app"
   container_app_environment_id = azurerm_container_app_environment.acaenv.id

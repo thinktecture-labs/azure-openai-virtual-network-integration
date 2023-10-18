@@ -1,6 +1,11 @@
 ARG PYTHON_VERSION=3.11.4
 FROM python:${PYTHON_VERSION}-slim as base
 
+
+# Labels
+LABEL org.opencontainers.image.authors = "Thorsten Hans <thorsten.hans@gmail.com>"
+LABEL org.opencontainers.image.license  = "MIT"
+
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -24,7 +29,7 @@ RUN python -m pip install -r requirements.txt
 USER appuser
 
 # Copy the source code into the container.
-COPY . .
+COPY . . 
 
 # Expose the port that the application listens on.
 EXPOSE 8000

@@ -1,20 +1,20 @@
 resource "azurerm_cognitive_account" "openai" {
-  name                  = "azopenai-${var.suffix}"
-  location              = data.azurerm_resource_group.rg.location
-  resource_group_name   = data.azurerm_resource_group.rg.name
-  kind                  = "OpenAI"
-  sku_name              = "S0"
-  custom_subdomain_name = "azopenai${var.suffix}"
+  name                          = "azopenai-${var.suffix}"
+  location                      = data.azurerm_resource_group.rg.location
+  resource_group_name           = data.azurerm_resource_group.rg.name
+  kind                          = "OpenAI"
+  sku_name                      = "S0"
+  custom_subdomain_name         = "azopenai${var.suffix}"
   public_network_access_enabled = false
 }
 
 resource "azurerm_cognitive_deployment" "gpt4" {
-  name                 = "mygpt4"
+  name                 = "live-gpt4"
   cognitive_account_id = azurerm_cognitive_account.openai.id
   model {
     format  = "OpenAI"
     name    = "gpt-4"
-    version = "0314"
+    version = "0613"
   }
 
   scale {
@@ -55,5 +55,4 @@ resource "azurerm_private_endpoint" "endpoint" {
     subresource_names              = ["account"]
   }
 }
-
 

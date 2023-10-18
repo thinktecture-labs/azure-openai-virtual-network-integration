@@ -20,7 +20,7 @@ echo "Deploying Azure Container Registry..."
 cd infra
 cd global
 
-terraform init
+terraform init -upgrade
 terraform validate
 terraform apply -auto-approve
 
@@ -56,7 +56,7 @@ echo "Deploying Application Infrastructure"
 cd infra
 cd workload
 
-terraform init
+terraform init -upgrade
 terraform validate
 terraform apply -var resource_group_name=$rgName -var arc_name=$acrName -var image_tag=$imageTag -var suffix=$suffix -auto-approve
 

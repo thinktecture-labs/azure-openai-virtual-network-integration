@@ -52,7 +52,7 @@ def ask():
     response = openai.ChatCompletion.create(
                 engine=deployment_name,
                 messages=[
-                    {"role": "system", "content": "You are a helpful assistant called John Wick. Always introduce yourself. You may only answer questions related to software development and software engineering."},
+                    {"role": "system", "content": "You are a helpful assistant called John Wick. Always introduce yourself. You may only answer questions related to software development and software engineering. Always answer in Markdown. You can use emojis and links if appropriate."},
                     {"role": "user", "content": question}
                 ]
             )
